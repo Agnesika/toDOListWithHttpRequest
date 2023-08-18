@@ -10,13 +10,14 @@ import java.util.Arrays;
 
 public class TodoItemController {
     private final TodoService todoService = new TodoService();
-    public void addTodo(){
+
+    public void addTodo() {
         try {
             Todo todo = this.collectTodoInfo();
             // and then we will send it to some API  using http request
             this.todoService.createTodo(todo);
             this.displayMessage("Todo item created successfully");
-        } catch (Exception exception){
+        } catch (Exception exception) {
             this.displayMessage(exception.getMessage());
         }
     }
@@ -52,7 +53,7 @@ public class TodoItemController {
         return JOptionPane.showInputDialog(message);
     }
 
-    private Object getUserInputFromDropDown(Object[] dropDownOptions, String title, String message){
+    private Object getUserInputFromDropDown(Object[] dropDownOptions, String title, String message) {
         return JOptionPane.showInputDialog(
                 null,
                 message,
@@ -60,14 +61,30 @@ public class TodoItemController {
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 dropDownOptions,
-                dropDownOptions[0]
+                dropDownOptions[0] // first item in the array can be used as default
         );
     }
 
-    public void viewAllTodo(){}
-    public void viewTodo(){}
-    public void removeTodo(){}
-    public void updateTodo(){}
+    public void viewAllTodo() {
+        try {
+            StringBuilder todoItemsAsString = new StringBuilder();
+
+            for (Todo todo : this.todoService.getAllTodoItems()) {
+                todoItemsAsString.append(todo.toString())
+            }
+            this.displayMessage(todoItemsAsString.toString());
+        } catch (Exception exception) {
+            this.displayMessage(exception.getMessage());
+        }
+
+        public void viewTodo () {
+        }
+
+        public void removeTodo () {
+        }
+
+        public void updateTodo () {
+        }
 
 
-}
+    }

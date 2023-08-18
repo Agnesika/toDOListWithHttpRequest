@@ -16,5 +16,10 @@ public class Todo {
     private Priority priority;
     private TodoStatus status;
 
+    @Override
+    public String toString() {
+        return dueDate + ": " + description + " - " + priority + " - " + status;
+    }
+
 
 }
