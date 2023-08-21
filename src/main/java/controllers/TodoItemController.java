@@ -7,6 +7,7 @@ import services.TodoService;
 
 import javax.swing.*;
 import java.util.Arrays;
+import java.util.List;
 
 public class TodoItemController {
     private final TodoService todoService = new TodoService();
@@ -70,21 +71,45 @@ public class TodoItemController {
             StringBuilder todoItemsAsString = new StringBuilder();
 
             for (Todo todo : this.todoService.getAllTodoItems()) {
-                todoItemsAsString.append(todo.toString())
+                todoItemsAsString.append(todo.toString());
             }
             this.displayMessage(todoItemsAsString.toString());
         } catch (Exception exception) {
             this.displayMessage(exception.getMessage());
         }
 
-        public void viewTodo () {
-        }
+    }
 
-        public void removeTodo () {
-        }
+    public void viewTodo() {
+        try {
+            List<Todo> existingTodoItem = this.todoService.getAllTodoItems();
+            Todo selectedTodo = (Todo) this.getUserInputFromDropDown(
+                    existingTodoItem.toArray(),
+                    "View item",
+                    "Choose the item to view");
 
-        public void updateTodo () {
+            Todo todo = this.todoService.getTodoItem(selectedTodo.get_id());
+
+            this.displayMessage(
+                    new StringBuilder()
+                            .append("Description: \t").append(todo.getDescription()).append("\n")
+                            .append("Due date: \t").append(todo.getDueDate()).append("\n")
+                            .append("Status: \t").append(todo.getStatus()).append("\n")
+                            .append("Priority: \t").append(todo.getPriority()).append("\n")
+                            .append("ID: \t").append(todo.get_id()).append("\n")
+                            .toString()
+            );
+
+        } catch (Exception exception) {
+            this.displayMessage(exception.getMessage());
         }
 
 
     }
+
+    public void removeTodo() {
+    }
+
+    public void updateTodo() {
+    }
+}

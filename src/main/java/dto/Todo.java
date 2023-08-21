@@ -18,7 +18,7 @@ public class Todo {
 
     @Override
     public String toString() {
-        return dueDate + ": " + description + " - " + priority + " - " + status;
+        return dueDate + ": " + description + " - " + priority + " - " + status + "\n";
     }
 
 

@@ -10,6 +10,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TodoService {
@@ -71,7 +72,42 @@ public class TodoService {
         }
     }
 
-    public List<Todo> getAllTodoItems() {
-        return new ArrayList<>();
+    public List<Todo> getAllTodoItems() throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI(this.BASE_URL + this.TODO_ENDPOINT))
+                .timeout(Duration.ofSeconds(30))
+                .header("Content-Type", "application/json")
+                .header("Accept", "application/json")
+                .GET() // coz we are asking data from API
+                .build();
+
+        HttpResponse<String> response = this.httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() != 200) {
+            throw new Exception("Request failed, API responded with code: " + response.statusCode());
+        }
+
+        List<Todo> convertedListFromAPI = Arrays.asList(this.gson.fromJson(response.body(), Todo[].class));
+        return convertedListFromAPI;
     }
+
+    public Todo getTodoItem(String todoID) throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI(this.BASE_URL + this.TODO_ENDPOINT + "/" + todoID))
+                .timeout(Duration.ofSeconds(30))
+                .header("Accept", "application/json")
+                .GET() // coz we are asking data from API
+                .build();
+
+        HttpResponse<String> response = this.httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() != 200) {
+            throw new Exception("Unable to find todo item with id: " + todoID + ". Error code: " + response.statusCode());
+        }
+
+        Todo todo = this.gson.fromJson(response.body(), Todo.class);
+        return todo;
+    }
+
+
 }

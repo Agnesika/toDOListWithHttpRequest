@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cea15a9-e85e-48bc-a2ca-fbc6d77db429" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    <list default="true" id="2cea15a9-e85e-48bc-a2ca-fbc6d77db429" name="Changes" comment="Created connection with Postman and responses in Todo list">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/TodoItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/TodoItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dto/Todo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dto/Todo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/services/TodoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/TodoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,11 +86,23 @@
       <option name="presentableId" value="Default" />
       <updated>1692200301080</updated>
       <workItem from="1692200302900" duration="6532000" />
-      <workItem from="1692372654895" duration="4410000" />
+      <workItem from="1692372654895" duration="16130000" />
     </task>
+    <task id="LOCAL-00001" summary="Created connection with Postman and responses in Todo list">
+      <created>1692383339982</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1692383339982</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Created connection with Postman and responses in Todo list" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created connection with Postman and responses in Todo list" />
   </component>
 </project>
