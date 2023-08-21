@@ -110,4 +110,36 @@ public class TodoService {
     }
 
 
+    public void deleteTodoItem(String todoID) throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI(this.BASE_URL + this.TODO_ENDPOINT + "/" + todoID))
+                .timeout(Duration.ofSeconds(30))
+                .header("Accept", "application/json")
+                .DELETE()
+                .build();
+
+        HttpResponse<String> response = this.httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() != 200)
+            throw new Exception("Unable to delete the todo item with id: " + todoID + ". Error code: " + response.statusCode());
+
+
+    }
+
+    public Todo updateTodoItem(Todo todo, String todoID) throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI(this.BASE_URL + this.TODO_ENDPOINT + "/" + todoID))
+                .timeout(Duration.ofSeconds(30))
+                .header("Content-Type", "application/json")
+                .header("Accept", "application/json")
+                .PUT(HttpRequest.BodyPublishers.ofString(this.gson.toJson(todo)))
+                .build();
+
+        HttpResponse<String> response = this.httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() != 200) {
+            throw new Exception("Unable to update the todo item with id: " + response.statusCode());
+        }
+        return this.gson.fromJson(response.body(), Todo.class);
+    }
 }

@@ -108,8 +108,38 @@ public class TodoItemController {
     }
 
     public void removeTodo() {
+        try {
+            List<Todo> existingTodoItem = this.todoService.getAllTodoItems();
+            Todo selectedTodo = (Todo) this.getUserInputFromDropDown(
+                    existingTodoItem.toArray(),
+                    "View item",
+                    "Choose the item to delete");
+
+            this.todoService.deleteTodoItem(selectedTodo.get_id());
+
+            this.displayMessage("Todo item was deleted successfully");
+
+        } catch (Exception exception) {
+            this.displayMessage(exception.getMessage());
+        }
     }
 
     public void updateTodo() {
+        try {
+            List<Todo> existingTodoItem = this.todoService.getAllTodoItems();
+            Todo selectedTodo = (Todo) this.getUserInputFromDropDown(
+                    existingTodoItem.toArray(),
+                    "View item",
+                    "Choose the item to update");
+
+            Todo todo = this.collectTodoInfo();
+            this.todoService.updateTodoItem(todo, selectedTodo.get_id());
+
+            this.displayMessage("Todo item was updated successfully");
+
+        } catch (Exception exception) {
+            this.displayMessage(exception.getMessage());
+        }
     }
+
 }
